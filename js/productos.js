@@ -1,14 +1,12 @@
 const productos = []
 
-let producto1 = new Producto("Anteojo negro", "Mdq", "1234", 2000, false)
-let producto2 = new Producto("Anteojo marron", "Brillon", "1224", 2500, true)
-let producto3 = new Producto("Anteojo azul", "Mdq", "1232", 4000, false)
-let producto4 = new Producto("Anteojo amarillo", "Brillon", "1244", 3600, false)
-let producto5 = new Producto("Anteojo verde", "Mdq", "1214", 5100, true)
-let producto6 = new Producto("Anteojo rojo", "Mdq", "2234", 1000, false)
-let producto7 = new Producto("Anteojo violeta", "Brillon", "1243", 6300, true)
+let producto1 = new Producto("ANTEOJO NEGRO", "MDQ", 1234, 2000, true, 10)
+let producto2 = new Producto("ANTEOJO MARRON", "BRILLON", 1224, 2500, false, 0)
+let producto3 = new Producto("ANTEOJO AZUL", "MDQ", 1232, 4000, false, 0)
+let producto4 = new Producto("ANTEOJO AMARILLO", "BRILLON", 1244, 3600, false, 0)
+let producto5 = new Producto("ANTEOJO VERDE", "MDQ", 1214, 5100, true, 1)
+let producto6 = new Producto("ANTEOJO ROJO", "MDQ", 2234, 1000, false, 0)
+let producto7 = new Producto("ANTEOJO VIOLETA", "BRILLON", 1243, 6300, true, 10)
+
 
 productos.push(producto1, producto2, producto3, producto4, producto5, producto6, producto7)
-
-/* console.log("Productos originales")
-console.table(productos) */
