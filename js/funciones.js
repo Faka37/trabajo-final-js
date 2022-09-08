@@ -9,22 +9,16 @@ const agregandoProducto = () => {
     let cantidad = 0
     if (disponibilidad) {
         cantidad = Number(prompt("ingrese la cantidad de stock"))
-    }else { cantidad = 0}
-    cantidad = cantidad 
-    
-    //OBJETO LITERAL
-    let nuevoProducto = { nombre: nombre, marca: marca, codigo: codigo, precio: precio, disponibilidad: disponibilidad, cantidad: cantidad }
+    } else { cantidad = 0 }
+    cantidad = cantidad
+
+
+    let nuevoProducto = new Producto(nombre, marca, codigo, precio, disponibilidad, cantidad)
+
     productos.push(nuevoProducto)
-    
-    // METODOS
-    
-    let disponibles = productos.filter(producto => producto.disponibilidad === true)
-    console.log(disponibles)
-    let noDisponibles = productos.filter(producto => producto.disponibilidad === false)
-    console.log(noDisponibles)
-    let topeMil = productos.filter(producto => producto.precio <= 1000)
-    console.log(topeMil)
+
 }
+
 
 
 // Para empezar y llegado al caso seguir agregando productos
@@ -77,3 +71,16 @@ function busqueda() {
         console.warn("No se encontró el producto buscado.")
     }
 }
+
+function calcularCarrito() {
+    let total = carrito.reduce((acumulador, producto) => acumulador + producto.precio, 0)
+    console.log("total del carrito:", total)
+}
+
+
+// METODOS
+let disponibles = productos.filter(producto => producto.disponibilidad === true)
+
+let noDisponibles = productos.filter(producto => producto.disponibilidad === false)
+
+let topeMil = productos.filter(producto => producto.precio <= 1000)
