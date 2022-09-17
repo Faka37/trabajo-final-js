@@ -81,6 +81,20 @@ const addingProducts = () => {
     products.push(newProduct)
 }
 
+//INGRESO ADMIN
+const adminLogin = () => {
+    alert("Solo el administrador puede cargar un nuevo producto")
+    const nameUser = prompt("nombre")
+
+    if ( nameUser === "admin"){
+        const passwordUser = prompt("contraseña")
+        if (passwordUser === "1234"){
+            addingProducts()
+        }
+    } else { alert("ni le pegaste al usuario")}
+
+
+}
 
 // CARGANDO PRODUCTOS (NUEVO)
 let div = ""
@@ -100,7 +114,7 @@ const loadProducts = (products) => {
         container.appendChild(div)
     }
 }
-const addCart = document.querySelectorAll(".cart")
+const addtoCart = document.querySelectorAll(".cart")
 
 
 
@@ -176,7 +190,7 @@ function contentCard(){
 //OPCION DE PRECIOS
 select.addEventListener("change", () => optionPrice())
 //AGREGADO DE PRODUCTOS
-addingNewProducts.addEventListener("click", () => addingProducts())
+addingNewProducts.addEventListener("click", () => adminLogin())
 //MUESTRA LOS PRODUCTOS
 everyBody.addEventListener("click", () => loadProducts(products), list())
 //BUSCADOR
@@ -187,7 +201,9 @@ filter.addEventListener("keypress", (e) => {
     }
 })
 //AGREGADO DE PRODUCTOS
-//addCart.addEventListener("click", () => hola())
+addtoCart.forEach((product) => {
+    product.addEventListener("click", () => console.log(`hola`))
+})
 
 //CONTENIDO DE CARRO
 //btnCart.addEventListener("click", () => hola())
