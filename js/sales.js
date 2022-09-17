@@ -33,6 +33,7 @@ class Product {
 // ARRAYS
 const products = []
 const cart = []
+const search = []
 
 
 // LISTA DE PRODUCTOS 
@@ -104,14 +105,14 @@ function optionPrice(){
 
 
 // MAS DE UN RESULTADO
-const search = []
 function searching() {
-    let parameter = filter.value 
+    let parameter = filter.value.toUpperCase()
         if (parameter !== "") {
             const result = products.filter(product => product.name.match(parameter))
             if (result.length !== 0) {
                 search.push(result)
-                loadProducts(search)
+                search.map( search => {products
+                loadProducts(search)})
             } else {
                 alert("No se encontro el producto")
             }
