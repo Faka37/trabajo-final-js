@@ -9,9 +9,10 @@
 
     <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
     <script defer src="./bootstrap/jquery/jquery.min.js"></script>
+    <link rel="stylesheet" href="./assets/iconos/fontawesome-free-6.1.1-web/css/all.min.css">
     <script defer src="./bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script defer src="./js/sales.js"></script>
     <link rel="stylesheet" href="./css/style.css">
+    <script defer src="./js/sales.js"></script>
 
 
 </head>
@@ -26,8 +27,16 @@
         <div class="text-center">
             <div class="row m-2 justify-content-around ">
                 <div>
-                    <input type="text" class="p-1" placeholder="Busca tu proximo celular " id="filter">
-                    <button type="button" class="btn btn-secondary" id="result">buscar</button>
+                    <button type="button" class="btn btn-secondary" id="addingProducts" data-toggle="tooltip"
+                        data-placement="top" title="Cargar nuevo producto">
+                        <strong>+</strong>
+                    </button>
+                    <button type="button" class="btn btn-secondary " id="everybody">
+                        Productos
+                    </button>
+                    <button type="button" class="btn btn-secondary " id="btnCart">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </button>
                 </div>
                 <div>
                     <select id="filteredPrice" class="form-control" placeholder="Elegí una opcion" >
@@ -38,15 +47,10 @@
                     </select>
                 </div>
                 <div>
-                    <button type="button" class="btn btn-secondary" id="addingProducts" data-toggle="tooltip"
-                        data-placement="top" title="Cargar nuevo producto">
-                        <strong>+</strong>
-                    </button>
-                    <button type="button" class="btn btn-secondary " id="everybody">
-                        Productos
-                    </button>
-
+                    <input type="text" class="p-1" placeholder="Busca tu proximo celular " id="filter">
+                    <button type="button" class="btn btn-secondary" id="result">buscar</button>
                 </div>
+                
             </div>
 
         </div>
