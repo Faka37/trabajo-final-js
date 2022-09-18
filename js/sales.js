@@ -86,7 +86,7 @@ const adminLogin = () => {
     alert("Solo el administrador puede cargar un nuevo producto")
     const nameUser = prompt("nombre")
 
-    if ( nameUser === "admin"){
+    if ( nameUser !== "admin"){
         const passwordUser = prompt("contraseña")
         if (passwordUser === "1234"){
             addingProducts()
