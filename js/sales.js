@@ -96,6 +96,7 @@ const adminLogin = () => {
 
 }
 
+
 // CARGANDO PRODUCTOS (NUEVO)
 let div = ""
 const loadProducts = (products) => {
@@ -109,13 +110,11 @@ const loadProducts = (products) => {
             <h4>${product.brand}</h4>
             <img  class="image w-75" src="${product.image}" onerror="this.src='./assets/images/remodelacion.jpg'" alt="Hubo un error">
             <p class="price"><strong>${product.price} USD</strong></p>
-            <button class="button btn cart " id="${product.name}" >Agregar al carro</button>
+            <button class="cart button btn " id="${product.name}" >Agregar al carro</button>
             `
         container.appendChild(div)
     }
 }
-const addtoCart = document.querySelectorAll(".cart")
-
 
 
 // PARA ORDENAR LOS PRECIOS (NUEVO)
@@ -167,11 +166,6 @@ function searching() {
 }
 }
 
-///SACAR 
-function hola() {
-    alert(`hola`)
-}
-///SACAR
 
 //CART
 
@@ -200,10 +194,32 @@ filter.addEventListener("keypress", (e) => {
         searching()
     }
 })
-//AGREGADO DE PRODUCTOS
-addtoCart.forEach((product) => {
-    product.addEventListener("click", () => console.log(`hola`))
-})
 
+
+
+
+
+
+
+
+
+
+///PRUEBA
 //CONTENIDO DE CARRO
-//btnCart.addEventListener("click", () => hola())
+btnCart.addEventListener("click",  () => console.log(`hola`))
+
+
+
+
+
+/////BORRAR
+
+const btns = document.querySelectorAll(".cart")
+//AGREGADO DE PRODUCTOS
+const addToCartProducts = () => {
+    debugger
+    btns.forEach((product) => {
+        product.addEventListener("click", () => console.log(`hola`))
+    }) 
+    
+}
