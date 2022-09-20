@@ -1,7 +1,6 @@
 // LLAMADAS AL HTML
 const filter = document.querySelector("#filter")//Filtro
 const result = document.querySelector("#result")//resultado
-const everyBody = document.querySelector("#everybody")//Todos los productos
 const filtered = document.getElementsByName("filtered")//Menor precio / Mayor precio 
 const select = document.querySelector("#filteredPrice")//select
 const addingNewProducts = document.querySelector("#addingProducts")//Cargando productos
@@ -33,7 +32,7 @@ class Product {
 
 // ARRAYS
 const products = []
-const cart = []
+const cart = [1,2]
 const search = []
 
 
@@ -42,7 +41,7 @@ function list() {
     //XIAOMI
     products.push(new Product("XIAOMI", "REDMI 9A", "./assets/images/redmi-9A.jpg", 145))
     products.push(new Product("XIAOMI", "REDMI 9C", "./assets/images/redmi-9C.jpg", 175))
-    products.push(new Product("XIAOMI", "REDMI 9T", "./assets/images/redmi-9t.jpg", 210))
+/*     products.push(new Product("XIAOMI", "REDMI 9T", "./assets/images/redmi-9t.jpg", 210))
     products.push(new Product("XIAOMI", "NOTE 9 PRO", "./assets/images/redmiNote9Pro.jpg", 290))
     products.push(new Product("XIAOMI", "REDMI 10", "./assets/images/redmi-10.png", 215))
     products.push(new Product("XIAOMI", "REDMI 10A", "./assets/images/redmi-10a.jpg", 180))
@@ -63,7 +62,7 @@ function list() {
     products.push(new Product("IPHONE", "12", "./assets/images/iphone-12.jpg", 930))
     products.push(new Product("IPHONE", "13", "./assets/images/iphone-13.jpg", 1110))
     products.push(new Product("IPHONE", "13 PRO", "./assets/images/iphone-13pro.jpg", 1500))
-    products.push(new Product("IPHONE", "13 PRO MAX 1TB", "./assets/images/iphone-13promax.jpg", 1850))
+    products.push(new Product("IPHONE", "13 PRO MAX 1TB", "./assets/images/iphone-13promax.jpg", 1850)) */
 
 }
 
@@ -86,16 +85,15 @@ const adminLogin = () => {
     alert("Solo el administrador puede cargar un nuevo producto")
     const nameUser = prompt("nombre")
 
-    if ( nameUser !== "admin"){
+    if (nameUser !== "admin") {
         const passwordUser = prompt("contraseña")
-        if (passwordUser === "1234"){
+        if (passwordUser === "1234") {
             addingProducts()
         }
-    } else { alert("ni le pegaste al usuario")}
+    } else { alert("ni le pegaste al usuario") }
 
 
 }
-
 
 // CARGANDO PRODUCTOS (NUEVO)
 let div = ""
@@ -103,18 +101,20 @@ const loadProducts = (products) => {
     container.innerHTML = ""
     for (const product of products) {
         div = document.createElement("div")
-        div.setAttribute("class", "card text-center col-xl-3 col-md-4 col-8  m-3")
+        div.setAttribute("class", "card text-center col-xl-2 col-md-3 col-sm-4 col-8  m-3")
 
         div.innerHTML += ` 
-            <h2>${product.name}</h2>
+            <h2 class="name">${product.name}</h2>
             <h4>${product.brand}</h4>
             <img  class="image w-75" src="${product.image}" onerror="this.src='./assets/images/remodelacion.jpg'" alt="Hubo un error">
             <p class="price"><strong>${product.price} USD</strong></p>
-            <button class="cart button btn " id="${product.name}" >Agregar al carro</button>
+            <button class="button btn " id="${product.name}" >Agregar al carro</button>
             `
-        container.appendChild(div)
-    }
+            container.appendChild(div)
+        }
 }
+list()
+loadProducts(products)
 
 
 // PARA ORDENAR LOS PRECIOS (NUEVO)
@@ -158,25 +158,67 @@ function searching() {
                     products
                     loadProducts(search)
                 })
-            
-        } else {
-            alert("No se encontro el producto")
+
+            } else {
+                alert("No se encontro el producto")
+            }
         }
     }
-}
 }
 
 
 //CART
 
-/* function loadCart() {
-
+const updateCart = (cart) => {
+    let cartContainer = document.querySelector("#cart")
+    let container = document.getElementById("cartContainer")
+    if(container) {
+        container.parentElement.removeChild(container)
+    }
+    let div = document.createElement("div")
+    div.setAttribute("id","cartContainer")
+    div.innerHTML += `<h2>Carrito de compras</h2>`
+    for (const product of cart){
+        div.innerHTML += `
+                <div>
+                    <h2 class="name">${product.name}</h2>
+                    <h4>${product.brand}</h4>
+                    <img  class="image w-75" src="${product.image}" onerror="this.src='./assets/images/remodelacion.jpg'" alt="Hubo un error">
+                    <p class="price"><strong>${product.price} USD</strong></p>
+                    <p>Cantidad: ${product.quantity}</p>
+                </div>
+        `
+    }
+    cartContainer.appendChild(div)
 }
 
-function contentCard(){
-
+const buttons = document.getElementsByClassName("button")
+const loadCart = () => {
+    for (const button of buttons) {
+        button.addEventListener("click", () => {
+            let counter = cart.find(element => element.id == button.id)
+            if (counter) {
+                counter.quantity++
+            } else {
+                let product = products.find(element => element.id == button.id)
+                if (product) {
+                    let newProduct = {
+                        brand: product.brand,
+                        name: product.name,
+                        image: product.image,
+                        price: product.price,
+                        quantity: 1
+                    }
+                    cart.push(newProduct)
+                }
+            }
+            updateCart(cart)
+        })
+    }
 }
- */
+
+loadCart()
+
 
 
 // BOTONES
@@ -185,8 +227,6 @@ function contentCard(){
 select.addEventListener("change", () => optionPrice())
 //AGREGADO DE PRODUCTOS
 addingNewProducts.addEventListener("click", () => adminLogin())
-//MUESTRA LOS PRODUCTOS
-everyBody.addEventListener("click", () => loadProducts(products), list())
 //BUSCADOR
 result.addEventListener("click", searching)
 filter.addEventListener("keypress", (e) => {
@@ -197,29 +237,6 @@ filter.addEventListener("keypress", (e) => {
 
 
 
-
-
-
-
-
-
-
-///PRUEBA
 //CONTENIDO DE CARRO
-btnCart.addEventListener("click",  () => console.log(`hola`))
+btnCart.addEventListener("click", () => console.log(cart))
 
-
-
-
-
-/////BORRAR
-
-const btns = document.querySelectorAll(".cart")
-//AGREGADO DE PRODUCTOS
-const addToCartProducts = () => {
-    debugger
-    btns.forEach((product) => {
-        product.addEventListener("click", () => console.log(`hola`))
-    }) 
-    
-}
