@@ -32,7 +32,7 @@ class Product {
 
 // ARRAYS
 const products = []
-const cart = [1,2]
+const cart = []
 const search = []
 
 
@@ -41,28 +41,28 @@ function list() {
     //XIAOMI
     products.push(new Product("XIAOMI", "REDMI 9A", "./assets/images/redmi-9A.jpg", 145))
     products.push(new Product("XIAOMI", "REDMI 9C", "./assets/images/redmi-9C.jpg", 175))
-/*     products.push(new Product("XIAOMI", "REDMI 9T", "./assets/images/redmi-9t.jpg", 210))
-    products.push(new Product("XIAOMI", "NOTE 9 PRO", "./assets/images/redmiNote9Pro.jpg", 290))
-    products.push(new Product("XIAOMI", "REDMI 10", "./assets/images/redmi-10.png", 215))
-    products.push(new Product("XIAOMI", "REDMI 10A", "./assets/images/redmi-10a.jpg", 180))
-    products.push(new Product("XIAOMI", "REDMI 10C", "./assets/images/redmi-10c.jpg", 190))
-    products.push(new Product("XIAOMI", "REDMI 10S", "./assets/images/redmi-10s.jpg", 260))
-    products.push(new Product("XIAOMI", "REDMI 10 PRO", "./assets/images/redmi-10pro.jpg", 280))
-    products.push(new Product("XIAOMI", "NOTE 11", "./assets/images/redmi-note11.jpg", 220))
-    products.push(new Product("XIAOMI", "NOTE 11S", "./assets/images/redmi-note11s.jpg", 275))
-    products.push(new Product("XIAOMI", "NOTE 11 PRO", "./assets/images/redmi-note11pro.jpg", 305))
-    products.push(new Product("XIAOMI", "11 LITE G5 NE", "./assets/images/redmi-11lite.jpg", 365))
-    products.push(new Product("XIAOMI", "MI 12", "./assets/images/redmi-mi12.jpg", 685))
-    products.push(new Product("XIAOMI", "POCO M4 PRO", "./assets/images/redmi-poco4pro.jpg", 255))
-    products.push(new Product("XIAOMI", "POCO X4 PRO", "./assets/images/redmi-pocox4pro.jpg", 360))
-
-    //IPHONE
-    products.push(new Product("IPHONE", "11", "./assets/images/iphone-11.jpg", 620))
-    products.push(new Product("IPHONE", "12 MINI", "./assets/images/iphone-12mini.jpg", 790))
-    products.push(new Product("IPHONE", "12", "./assets/images/iphone-12.jpg", 930))
-    products.push(new Product("IPHONE", "13", "./assets/images/iphone-13.jpg", 1110))
-    products.push(new Product("IPHONE", "13 PRO", "./assets/images/iphone-13pro.jpg", 1500))
-    products.push(new Product("IPHONE", "13 PRO MAX 1TB", "./assets/images/iphone-13promax.jpg", 1850)) */
+    /*     products.push(new Product("XIAOMI", "REDMI 9T", "./assets/images/redmi-9t.jpg", 210))
+        products.push(new Product("XIAOMI", "NOTE 9 PRO", "./assets/images/redmiNote9Pro.jpg", 290))
+        products.push(new Product("XIAOMI", "REDMI 10", "./assets/images/redmi-10.png", 215))
+        products.push(new Product("XIAOMI", "REDMI 10A", "./assets/images/redmi-10a.jpg", 180))
+        products.push(new Product("XIAOMI", "REDMI 10C", "./assets/images/redmi-10c.jpg", 190))
+        products.push(new Product("XIAOMI", "REDMI 10S", "./assets/images/redmi-10s.jpg", 260))
+        products.push(new Product("XIAOMI", "REDMI 10 PRO", "./assets/images/redmi-10pro.jpg", 280))
+        products.push(new Product("XIAOMI", "NOTE 11", "./assets/images/redmi-note11.jpg", 220))
+        products.push(new Product("XIAOMI", "NOTE 11S", "./assets/images/redmi-note11s.jpg", 275))
+        products.push(new Product("XIAOMI", "NOTE 11 PRO", "./assets/images/redmi-note11pro.jpg", 305))
+        products.push(new Product("XIAOMI", "11 LITE G5 NE", "./assets/images/redmi-11lite.jpg", 365))
+        products.push(new Product("XIAOMI", "MI 12", "./assets/images/redmi-mi12.jpg", 685))
+        products.push(new Product("XIAOMI", "POCO M4 PRO", "./assets/images/redmi-poco4pro.jpg", 255))
+        products.push(new Product("XIAOMI", "POCO X4 PRO", "./assets/images/redmi-pocox4pro.jpg", 360))
+    
+        //IPHONE
+        products.push(new Product("IPHONE", "11", "./assets/images/iphone-11.jpg", 620))
+        products.push(new Product("IPHONE", "12 MINI", "./assets/images/iphone-12mini.jpg", 790))
+        products.push(new Product("IPHONE", "12", "./assets/images/iphone-12.jpg", 930))
+        products.push(new Product("IPHONE", "13", "./assets/images/iphone-13.jpg", 1110))
+        products.push(new Product("IPHONE", "13 PRO", "./assets/images/iphone-13pro.jpg", 1500))
+        products.push(new Product("IPHONE", "13 PRO MAX 1TB", "./assets/images/iphone-13promax.jpg", 1850)) */
 
 }
 
@@ -83,11 +83,14 @@ const addingProducts = () => {
 //INGRESO ADMIN
 const adminLogin = () => {
     alert("Solo el administrador puede cargar un nuevo producto")
+    const name = "admin"
+    const password = 1234
     const nameUser = prompt("nombre")
 
-    if (nameUser !== "admin") {
+
+    if (nameUser === name) {
         const passwordUser = prompt("contraseña")
-        if (passwordUser === "1234") {
+        if (passwordUser === passwordUser) {
             addingProducts()
         }
     } else { alert("ni le pegaste al usuario") }
@@ -110,8 +113,8 @@ const loadProducts = (products) => {
             <p class="price"><strong>${product.price} USD</strong></p>
             <button class="button btn " id="${product.name}" >Agregar al carro</button>
             `
-            container.appendChild(div)
-        }
+        container.appendChild(div)
+    }
 }
 list()
 loadProducts(products)
@@ -172,14 +175,15 @@ function searching() {
 const updateCart = (cart) => {
     let cartContainer = document.querySelector("#cart")
     let container = document.getElementById("cartContainer")
-    if(container) {
-        container.parentElement.removeChild(container)
+    if (container) {
+        cartContainer.innerHTML = ""
     }
     let div = document.createElement("div")
-    div.setAttribute("id","cartContainer")
+    div.setAttribute("id", "cartContainer")
     div.innerHTML += `<h2>Carrito de compras</h2>`
-    for (const product of cart){
-        div.innerHTML += `
+    for (const product of cart) {
+        div.innerHTML +=
+            `
                 <div>
                     <h2 class="name">${product.name}</h2>
                     <h4>${product.brand}</h4>
@@ -196,28 +200,27 @@ const buttons = document.getElementsByClassName("button")
 const loadCart = () => {
     for (const button of buttons) {
         button.addEventListener("click", () => {
-            let counter = cart.find(element => element.id == button.id)
+            let counter = cart.find((element) => element.name == button.id)
             if (counter) {
                 counter.quantity++
             } else {
-                let product = products.find(element => element.id == button.id)
+                let product = products.find((element) => element.name == button.id)
                 if (product) {
                     let newProduct = {
                         brand: product.brand,
                         name: product.name,
                         image: product.image,
                         price: product.price,
-                        quantity: 1
-                    }
+                        quantity: 1,
+                    };
                     cart.push(newProduct)
                 }
             }
             updateCart(cart)
         })
+        
     }
 }
-
-loadCart()
 
 
 
@@ -238,5 +241,5 @@ filter.addEventListener("keypress", (e) => {
 
 
 //CONTENIDO DE CARRO
-btnCart.addEventListener("click", () => console.log(cart))
+//btnCart.addEventListener("click", () => )
 
