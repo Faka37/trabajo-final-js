@@ -15,7 +15,7 @@ const updateCart = (cart) => {
         div.innerHTML +=
             `
                 
-                <div class= "cart">
+                <div >
                 <div class="card-info">
                     <p class="text-title">${product.name} </p>
                     <p class="text-body">${product.brand}</p>
