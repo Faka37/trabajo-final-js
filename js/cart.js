@@ -14,14 +14,25 @@ const updateCart = (cart) => {
         div.setAttribute("id", "cartContainer")
         div.innerHTML +=
             `
-                <div>
-                    <h2 class="name">${product.name}</h2>
-                    <h4>${product.brand}</h4>
-                    <img  class="image w-75" src="${product.image}" onerror="this.src='./assets/images/remodelacion.jpg'" alt="Hubo un error">
-                    <p class="price"><strong>${product.price} USD</strong></p>
-                    <p>Cantidad: ${product.quantity}</p>
-                    <button class="btn remove" ><strong><i class="fa-regular fa-trash-can"></i></strong></button>
+                
+                <div class= "cart">
+                <div class="card-info">
+                    <p class="text-title">${product.name} </p>
+                    <p class="text-body">${product.brand}</p>
                 </div>
+                <img class="image" src="${product.image}" onerror="this.src='./assets/images/remodelacion.jpg'" alt="Hubo un error">
+                        
+                        
+                <div class="card-footer">
+                    <span class="text-title">${product.price} USD</span>
+                    <p>Cantidad: ${product.quantity}</p>
+                    
+                    <div class="card-button">
+                        <strong class="btn remove"><i class="fa-regular fa-trash-can"></i></strong>
+                    </div>
+                </div>
+                </div>
+
             `
         cartContainer.appendChild(div)
     }
@@ -29,8 +40,8 @@ const updateCart = (cart) => {
 
 
 
-
-const buttons = document.getElementsByClassName("button")
+console.log(cart);
+const buttons = document.getElementsByClassName("buttonCart")
 const loadCart = () => {
     for (const button of buttons) {
         button.addEventListener("click", () => {
@@ -51,6 +62,7 @@ const loadCart = () => {
                 }
             }
             updateCart(cart)
+            console.log(cart);
         })
 
     }
@@ -67,5 +79,6 @@ function remove(product) {
     } 
 }
 
-//remover.addEventListener("click", remove)
+remover.addEventListener("click", () =>  remove(product))
+
 
