@@ -7,13 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactuando con html</title>
 
-    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
-    <script defer src="./bootstrap/jquery/jquery.min.js"></script>
-    <link rel="stylesheet" href="./assets/iconos/fontawesome-free-6.1.1-web/css/all.min.css">
-    <script defer src="./bootstrap/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="./css/style.css">
-    <script defer src="./js/cart.js"></script>
-    <script defer src="./js/sales.js"></script>
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+    <script defer src="../bootstrap/jquery/jquery.min.js"></script>
+    <link rel="stylesheet" href="../assets/iconos/fontawesome-free-6.1.1-web/css/all.min.css">
+    <script defer src="../bootstrap/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/cart.js"></script>
+
 
 
 
@@ -22,7 +22,7 @@
 <header class="header text-center ">
     <section class="container ">
         <nav class="navbar navbar-expand-lg navbar-light justify-content-around">
-            <a href="../index.html"><img class="icon" src="./assets/images/youcell.png" alt="Marca"></a>
+            <a href="../index.html"><img class="icon" src="../assets/images/youcell.png" alt="Marca"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -31,27 +31,27 @@
             <div class="collapse navbar-collapse justify-content-around" id="navbarSupportedContent">
                 <div class="justify-content-around">
                     <button type="button" class="btn btn-secondary" id="addingProducts" data-toggle="tooltip"
-                        data-placement="top" title="Cargar nuevo producto">
+                        data-placement="top" title="Cargar nuevo producto" disabled>
                         <strong>+</strong>
                     </button>
-                    <a class="text-white" href="./pages/cart.htm"><button type="button" class="btn btn-secondary "
-                            id="btnCart">
+                    <a class="text-white" href="./cart.html"><button type="button" class="btn btn-secondary "
+                            id="btnCart" disabled>
                             <i class="fa-solid fa-cart-shopping"></i>
                         </button>
                     </a>
                 </div>
-                <div class="justify-content-center">
-                    <select id="filteredPrice" class="form-control my-2  " placeholder="Elegí una opcion">
+                <div class="justify-content-center"  >
+                    <select id="filteredPrice" class="form-control my-2  " placeholder="Elegí una opcion" disabled>
                         <option value="" disabled selected>Elegí una opción</option>
-                        <option id="higherPrice" value="higherPrice" name="filtered">Mayor precio</option>
-                        <option id="lowerPrice" value="lowerPrice" name="filtered">Menor precio</option>
+                        <option id="higherPrice" value="higherPrice" name="filtered" disabled>Mayor precio</option>
+                        <option id="lowerPrice" value="lowerPrice" name="filtered" disabled>Menor precio</option>
 
                     </select>
                 </div>
                 <div>
-                    <form class="form-inline my-2 my-lg-0 justify-content-center">
-                        <input type="text" class="p-1" placeholder="Busca tu proximo celular " id="filter">
-                        <button type="button" class="btn btn-secondary" id="result">buscar</button>
+                    <form class="form-inline my-2 my-lg-0 justify-content-center" >
+                        <input type="text" class="p-1" placeholder="Busca tu proximo celular " id="filter" disabled>
+                        <button type="button" class="btn btn-secondary" id="result" disabled>buscar</button>
                     </form>
                 </div>
             </div>
@@ -60,19 +60,17 @@
 
 </header>
 
-
 <body>
     <div class="text-center">
         <h2 class="">XIAOMI || IPHONE</h2>
         <h3 class="">EN STOCK || ENTREGA INMEDIATA</h3>
+        <h3 class="">TUS PRODUCTOS</h3>
     </div>
-    <div class="row mt-3 justify-content-center " id="container">
-    </div>
-
-    <div class="row mt-3 justify-content-center" id="cart">
-        <div class="" id="cartContainer">
+    <div class="mt-3 justify-content-center" id="cart">
+        <div class="row" id="cartContainer">
         </div>
     </div>
+
 </body>
 
 </html>
