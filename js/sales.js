@@ -13,7 +13,7 @@ const btnCart = document.querySelector("#btnCart") //Contenedor de productos
 
 // CLASE CONSTRUCTORA   
 class Product {
-    constructor(brand, name, image, price) {
+    constructor(brand, name, image, price,quantity) {
         this.brand = brand
         this.name = name
         this.image = image
@@ -38,7 +38,7 @@ const search = []
 // LISTA DE PRODUCTOS 
 function list() {
     //XIAOMI
-    products.push(new Product("XIAOMI", "REDMI 9A", "./assets/images/redmi-9A.jpg", 145))
+/*     products.push(new Product("XIAOMI", "REDMI 9A", "./assets/images/redmi-9A.jpg", 145))
     products.push(new Product("XIAOMI", "REDMI 9C", "./assets/images/redmi-9C.jpg", 175))
     products.push(new Product("XIAOMI", "REDMI 9T", "./assets/images/redmi-9t.jpg", 210))
     products.push(new Product("XIAOMI", "NOTE 9 PRO", "./assets/images/redmiNote9Pro.jpg", 290))
@@ -53,7 +53,7 @@ function list() {
     products.push(new Product("XIAOMI", "11 LITE G5 NE", "./assets/images/redmi-11lite.jpg", 365))
     products.push(new Product("XIAOMI", "MI 12", "./assets/images/redmi-mi12.jpg", 685))
     products.push(new Product("XIAOMI", "POCO M4 PRO", "./assets/images/redmi-poco4pro.jpg", 255))
-    products.push(new Product("XIAOMI", "POCO X4 PRO", "./assets/images/redmi-pocox4pro.jpg", 360))
+    products.push(new Product("XIAOMI", "POCO X4 PRO", "./assets/images/redmi-pocox4pro.jpg", 360)) */
 
     //IPHONE
     products.push(new Product("IPHONE", "11", "./assets/images/iphone-11.jpg", 620))
@@ -107,7 +107,7 @@ const loadProducts = (products) => {
 
         div.innerHTML += ` 
 
-        <img class="image" src="${product.image}" onerror="this.src='./assets/images/remodelacion.jpg'" alt="Hubo un error">
+        <img class="card-img image" src="${product.image}" onerror="this.src='./assets/images/remodelacion.jpg'" alt="Hubo un error">
         <div class="card-info">
             <p class="text-title">${product.name} </p>
             <p class="text-body">${product.brand}</p>

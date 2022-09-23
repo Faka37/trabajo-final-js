@@ -16,21 +16,21 @@ const updateCart = (cart) => {
             `
                 
                 <div >
-                <div class="card-info">
-                    <p class="text-title">${product.name} </p>
-                    <p class="text-body">${product.brand}</p>
-                </div>
-                <img class="image" src="${product.image}" onerror="this.src='./assets/images/remodelacion.jpg'" alt="Hubo un error">
-                        
-                        
-                <div class="card-footer">
-                    <span class="text-title">${product.price} USD</span>
-                    <p>Cantidad: ${product.quantity}</p>
-                    
-                    <div class="card-button">
-                        <strong class="btn remove"><i class="fa-regular fa-trash-can"></i></strong>
+                    <div class="card-info">
+                        <p class="text-title">${product.name} </p>
+                        <p class="text-body">${product.brand}</p>
                     </div>
-                </div>
+                    <img class="image" src="${product.image}" onerror="this.src='./assets/images/remodelacion.jpg'" alt="Hubo un error">
+                            
+                            
+                    <div class="card-footer ">
+                        <span class="text-title">${product.price} USD</span>
+                        <span><strong>*${product.quantity}</strong></span>
+                        
+                        <div class="card-button remove" >
+                            <strong class="btn " dataId="${product.name} "><i class="fa-regular fa-trash-can"></i></strong>
+                        </div>
+                    </div>
                 </div>
 
             `
@@ -45,11 +45,11 @@ const buttons = document.getElementsByClassName("buttonCart")
 const loadCart = () => {
     for (const button of buttons) {
         button.addEventListener("click", () => {
-            let counter = cart.find((element) => element.name == button.id)
+            let counter = cart.find((element) => element.name === button.id)
             if (counter) {
                 counter.quantity++
             } else {
-                let product = products.find((element) => element.name == button.id)
+                let product = products.find((element) => element.name === button.id)
                 if (product) {
                     let newProduct = {
                         brand: product.brand,
@@ -66,19 +66,32 @@ const loadCart = () => {
         })
 
     }
+
 }
 
-const remover = document.getElementsByClassName("remove")
-function remove(product) {
-    // busco su índice en el array
-    let index = cart.indexOf(product)
 
-     // si existe, o sea es distinto a -1, lo borro con splice
-    if (index != -1 ) {
-        product.splice(index, 1)
-    } 
+let collection = document.querySelector(".cart");
+
+collection.addEventListener("click", remove);
+
+
+function remove(e) {
+    debugger
+    let idProd;
+    if (e.target.classList.contains("remove")) {
+        idProd = e.target.getAttribute("dataId");
+        console.log(idProd);
+        idProd = cart.find((element) => element.name == idProd);
+        console.log(idProd);
+    }
+
+    if (idProd.quantity === 1) {
+        let product = cart.find((element) => element.name == idProd.id);
+        let index = cart.indexOf(product);
+        cart.splice(index, 1);
+    } else if (idProd) {
+        idProd.quantity--;
+    }
 }
-
-remover.addEventListener("click", () =>  remove(product))
 
 
