@@ -38,9 +38,7 @@ const search = []
 // LISTA DE PRODUCTOS 
 function list() {
     //XIAOMI
-/*     products.push(new Product("XIAOMI", "REDMI 9A", "./assets/images/redmi-9A.jpg", 145))
-    products.push(new Product("XIAOMI", "REDMI 9C", "./assets/images/redmi-9C.jpg", 175))
-    products.push(new Product("XIAOMI", "REDMI 9T", "./assets/images/redmi-9t.jpg", 210))
+    products.push(new Product("XIAOMI", "REDMI 9A", "./assets/images/redmi-9A.jpg", 145))
     products.push(new Product("XIAOMI", "NOTE 9 PRO", "./assets/images/redmiNote9Pro.jpg", 290))
     products.push(new Product("XIAOMI", "REDMI 10", "./assets/images/redmi-10.png", 215))
     products.push(new Product("XIAOMI", "REDMI 10A", "./assets/images/redmi-10a.jpg", 180))
@@ -53,7 +51,7 @@ function list() {
     products.push(new Product("XIAOMI", "11 LITE G5 NE", "./assets/images/redmi-11lite.jpg", 365))
     products.push(new Product("XIAOMI", "MI 12", "./assets/images/redmi-mi12.jpg", 685))
     products.push(new Product("XIAOMI", "POCO M4 PRO", "./assets/images/redmi-poco4pro.jpg", 255))
-    products.push(new Product("XIAOMI", "POCO X4 PRO", "./assets/images/redmi-pocox4pro.jpg", 360)) */
+    products.push(new Product("XIAOMI", "POCO X4 PRO", "./assets/images/redmi-pocox4pro.jpg", 360))
 
     //IPHONE
     products.push(new Product("IPHONE", "11", "./assets/images/iphone-11.jpg", 620))

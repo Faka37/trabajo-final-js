@@ -51,7 +51,8 @@ width: 90%;
 margin: auto;
 }
 
-.price {margin: 10px;
+.price {
+    margin: 10px;
 }
 
 .button {
@@ -127,8 +128,14 @@ border: 1px solid #ffcaa6;
 background-color: #ffcaa6;
 }
 
-
-#cart {
-    margin: 50px;
-    border: 10px solid #252525 ;
+.fa-regular{
+    width: 5vh;
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+/* 
+.cart {
+    display: flex !important;
+} */
