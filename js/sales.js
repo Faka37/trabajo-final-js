@@ -83,14 +83,13 @@ const adminLogin = () => {
     const name = "admin"
     const password = 1234
     const nameUser = prompt("nombre")
-
-
-    if (nameUser === name) {
-        const passwordUser = prompt("contraseña")
-        if (passwordUser === password) {
-            addingProducts()
-        }
-    } else { alert("ni le pegaste al usuario") }
+    const passwordUser = prompt("contraseña")
+    
+    
+    if (nameUser === name || passwordUser === password) {
+        addingProducts()
+        loadProducts(products)
+    } else { alert("Usuario o contraseña invalido") }
 
 
 }

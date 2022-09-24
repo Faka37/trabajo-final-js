@@ -136,6 +136,23 @@ background-color: #ffcaa6;
     align-items: center;
 }
 
+#cart {
+    background-image: linear-gradient(
+    to bottom,
+    #b2e1eb,
+    #b4d7e4,
+    #b7cdda,
+    #b8c4cf,
+    #bbc2cf,
+    #bec0cd,
+    #c2becb,
+    #d2c0cf,
+    #e3c2cc,
+    #f1c6c4,
+    #f7ccb9,
+    #b0ebefe7
+);
+}
 
 .collapse.show.cart {
     display: flex;

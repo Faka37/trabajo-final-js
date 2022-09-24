@@ -38,8 +38,6 @@ const updateCart = (cart) => {
 }
 
 
-
-console.log(cart);
 const buttons = document.getElementsByClassName("buttonCart")
 const loadCart = () => {
     for (const button of buttons) {
@@ -92,4 +90,5 @@ function remove(e) {
     }
 }
 
+localStorage.getItem()
 
