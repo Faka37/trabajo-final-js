@@ -2,6 +2,9 @@
 
 const cart = []
 
+//CARGANDO AL CARRO
+
+
 const updateCart = (cart) => {
     let cartContainer = document.querySelector("#cart")
     let container = document.getElementById("cartContainer")
@@ -37,6 +40,9 @@ const saveInLocalStorage = (key, value) => {
     localStorage.setItem(key, JSON.stringify(value))
 } 
 
+
+//DANDOLE VIDA AL BOTON PARA QUE CARGUE EN EL CARRO
+
 const buttons = document.getElementsByClassName("buttonCart")
 const loadCart = () => {
     for (const button of buttons) {
@@ -58,7 +64,6 @@ const loadCart = () => {
                 }
             }
             saveInLocalStorage("cart", cart)
-            //localStorage.setItem("cart", JSON.stringify(cart))
             updateCart(cart)
         })
 
@@ -70,6 +75,8 @@ const loadCart = () => {
 let collection = document.querySelector(".cart");
 
 collection.addEventListener("click", remove);
+
+//REMOVIENDO LOS PRODUCTOS DEL CARRO
 
 
 function remove(e) {
@@ -91,6 +98,8 @@ function remove(e) {
     }
     saveInLocalStorage("cart", cart)
 }
+
+//GUARDANDO EN EL STORAGE, LLAMANDOLO DEL JSON ASI SE PUEDE TERMINAR VIENDO NUEVAMENTE
 
 function recoveryCart() {
     let cartRecovery = JSON.parse(localStorage.getItem("cart"))
