@@ -196,3 +196,21 @@ filter.addEventListener("keypress", (e) => {
 })
 
 
+/* const saveInLocalStorage = (key, value) => {
+    localStorage.setItem(key, JSON.stringify(value));
+};
+
+console.log(saveInLocalStorage(key, value)) */
+
+
+
+const saveInLocalStorage = (key, value) => {
+    localStorage.setItem(key, value);
+}
+for (const product of cart) {
+    saveInLocalStorage(product.id, JSON.stringify(product));
+}
+
+for (const product of cart) {
+    saveInLocalStorage("Cart", JSON.stringify(cart));
+}

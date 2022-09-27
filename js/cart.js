@@ -55,11 +55,11 @@ const loadCart = () => {
                         price: product.price,
                         quantity: 1,
                     };
-                    cart.push(newProduct)
+                    cart.push(newProduct) 
+                    localStorage.setItem("cart",JSON.stringify(cart))
                 }
             }
             updateCart(cart)
-            console.log(cart);
         })
 
     }
@@ -90,5 +90,8 @@ function remove(e) {
     }
 }
 
-localStorage.getItem()
-
+function recoveryCart(){
+    let cart = JSON.parse(localStorage.getItem("cart"))
+    updateCart(cart)
+} 
+recoveryCart()
