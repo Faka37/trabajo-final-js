@@ -14,8 +14,6 @@ const updateCart = (cart) => {
         div.setAttribute("id", "cartContainer")
         div.innerHTML +=
             `
-                
-                
                     <div class="card-info">
                         <p class="text-title">${product.name} </p>
                         <p class="text-body">${product.brand}</p>
@@ -30,13 +28,14 @@ const updateCart = (cart) => {
                         <i class="fa-regular fa-trash-can remove" data-id="${product.name}"></i>
                         </div>
                     </div>
-                
-
             `
-            cartContainer.appendChild(div)
-        }
+        cartContainer.appendChild(div)
+    }
 }
 
+const saveInLocalStorage = (key, value) => {
+    localStorage.setItem(key, JSON.stringify(value))
+} 
 
 const buttons = document.getElementsByClassName("buttonCart")
 const loadCart = () => {
@@ -55,10 +54,11 @@ const loadCart = () => {
                         price: product.price,
                         quantity: 1,
                     };
-                    cart.push(newProduct) 
-                    localStorage.setItem("cart",JSON.stringify(cart))
+                    cart.push(newProduct)
                 }
             }
+            saveInLocalStorage("cart", cart)
+            //localStorage.setItem("cart", JSON.stringify(cart))
             updateCart(cart)
         })
 
@@ -83,15 +83,20 @@ function remove(e) {
         let product = cart.find((prod) => prod.name == idProd.name);
         let index = cart.indexOf(product);
         cart.splice(index, 1);
-        updateCart(cart)
     } else if (idProd) {
         idProd.quantity--;
         updateCart(cart)
     }
+    saveInLocalStorage("cart", cart)
 }
 
-function recoveryCart(){
-    let cart = JSON.parse(localStorage.getItem("cart"))
+function recoveryCart() {
+    let cartRecovery = JSON.parse(localStorage.getItem("cart"))
+    cartRecovery.forEach((product) => {
+        cart.push(product)
+    });
     updateCart(cart)
-} 
+    console.log(cart);
+
+}
 recoveryCart()

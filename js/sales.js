@@ -13,7 +13,7 @@ const btnCart = document.querySelector("#btnCart") //Contenedor de productos
 
 // CLASE CONSTRUCTORA   
 class Product {
-    constructor(brand, name, image, price,quantity) {
+    constructor(brand, name, image, price, quantity) {
         this.brand = brand
         this.name = name
         this.image = image
@@ -195,22 +195,3 @@ filter.addEventListener("keypress", (e) => {
     }
 })
 
-
-/* const saveInLocalStorage = (key, value) => {
-    localStorage.setItem(key, JSON.stringify(value));
-};
-
-console.log(saveInLocalStorage(key, value)) */
-
-
-
-const saveInLocalStorage = (key, value) => {
-    localStorage.setItem(key, value);
-}
-for (const product of cart) {
-    saveInLocalStorage(product.id, JSON.stringify(product));
-}
-
-for (const product of cart) {
-    saveInLocalStorage("Cart", JSON.stringify(cart));
-}
