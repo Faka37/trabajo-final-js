@@ -83,6 +83,8 @@ function remove(e) {
         let product = cart.find((prod) => prod.name == idProd.name);
         let index = cart.indexOf(product);
         cart.splice(index, 1);
+        updateCart(cart);
+
     } else if (idProd) {
         idProd.quantity--;
         updateCart(cart)
