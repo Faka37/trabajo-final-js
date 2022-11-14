@@ -1,98 +1,27 @@
-// LLAMADAS AL HTML
-const filter = document.querySelector("#filter")//Filtro
-const result = document.querySelector("#result")//resultado
-const filtered = document.getElementsByName("filtered")//Menor precio / Mayor precio 
-const select = document.querySelector("#filteredPrice")//select
-const addingNewProducts = document.querySelector("#addingProducts")//Cargando productos
-const container = document.querySelector("#container")//Contenedor de cards
-const btnCart = document.querySelector("#btnCart") //Contenedor de productos
-
-
-// VARIABLES NECESARIAS 
-
-
-// CLASE CONSTRUCTORA   
-class Product {
-    constructor(brand, name, image, price, quantity) {
-        this.brand = brand
-        this.name = name
-        this.image = image
-        this.price = price
-        this.quantity = 0
-    }
-    priceIVA() {
-        this.price = this.price * IVA
-    }
-    discountStock(units) {
-        this.quantity = this.quantity - units
-    }
-
-}
-
-
 // ARRAYS
-const products = []
 const search = []
 
-
-// LISTA DE PRODUCTOS 
-function list() {
-    //XIAOMI
-    products.push(new Product("XIAOMI", "REDMI 9A", "./assets/images/redmi-9A.jpg", 145))
-    products.push(new Product("XIAOMI", "NOTE 9 PRO", "./assets/images/redmiNote9Pro.jpg", 290))
-    products.push(new Product("XIAOMI", "REDMI 10", "./assets/images/redmi-10.png", 215))
-    products.push(new Product("XIAOMI", "REDMI 10A", "./assets/images/redmi-10a.jpg", 180))
-    products.push(new Product("XIAOMI", "REDMI 10C", "./assets/images/redmi-10c.jpg", 190))
-    products.push(new Product("XIAOMI", "REDMI 10S", "./assets/images/redmi-10s.jpg", 260))
-    products.push(new Product("XIAOMI", "REDMI 10 PRO", "./assets/images/redmi-10pro.jpg", 280))
-    products.push(new Product("XIAOMI", "NOTE 11", "./assets/images/redmi-note11.jpg", 220))
-    products.push(new Product("XIAOMI", "NOTE 11S", "./assets/images/redmi-note11s.jpg", 275))
-    products.push(new Product("XIAOMI", "NOTE 11 PRO", "./assets/images/redmi-note11pro.jpg", 305))
-    products.push(new Product("XIAOMI", "11 LITE G5 NE", "./assets/images/redmi-11lite.jpg", 365))
-    products.push(new Product("XIAOMI", "MI 12", "./assets/images/redmi-mi12.jpg", 685))
-    products.push(new Product("XIAOMI", "POCO M4 PRO", "./assets/images/redmi-poco4pro.jpg", 255))
-    products.push(new Product("XIAOMI", "POCO X4 PRO", "./assets/images/redmi-pocox4pro.jpg", 360))
-
-    //IPHONE
-    products.push(new Product("IPHONE", "11", "./assets/images/iphone-11.jpg", 620))
-    products.push(new Product("IPHONE", "12 MINI", "./assets/images/iphone-12mini.jpg", 790))
-    products.push(new Product("IPHONE", "12", "./assets/images/iphone-12.jpg", 930))
-    products.push(new Product("IPHONE", "13", "./assets/images/iphone-13.jpg", 1110))
-    products.push(new Product("IPHONE", "13 PRO", "./assets/images/iphone-13pro.jpg", 1500))
-    products.push(new Product("IPHONE", "13 PRO MAX 1TB", "./assets/images/iphone-13promax.jpg", 1850))
-
+// UTILIZANDO FETCH 
+const contentHTML = ""
+const products = []
+const loadContent = async () => {
+    try {
+        const response = await fetch(URL)
+        const data = await response.json()
+        loadProducts(data)
+        products.push(...data)
+    } catch (error) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'No se pueden cargar los productos'
+        })
+    } finally {
+        loadCart()
+    }
 }
+loadContent()
 
-
-// AGREGADO DE PRODUCTOS
-const addingProducts = () => {
-    let brand = prompt("ingrese una marca").toUpperCase()
-    let name = prompt("ingrese nombre").toUpperCase()
-    let image = prompt("ingrese el url de la imagen")
-    let price = Number(prompt("ingrese el precio"))
-
-
-    let newProduct = new Product(brand, name, image, price)
-
-    products.push(newProduct)
-}
-
-//INGRESO ADMIN
-const adminLogin = () => {
-    alert("Solo el administrador puede cargar un nuevo producto")
-    const name = "admin"
-    const password = 1234
-    const nameUser = prompt("nombre")
-    const passwordUser = prompt("contraseña")
-    
-    
-    if (nameUser === name || passwordUser === password) {
-        addingProducts()
-        loadProducts(products)
-    } else { alert("Usuario o contraseña invalido") }
-
-
-}
 
 // CARGANDO PRODUCTOS (NUEVO)
 let div = ""
@@ -103,7 +32,6 @@ const loadProducts = (products) => {
         div.setAttribute("class", "card text-center col-xl-2 col-md-3 col-sm-4 col-8  m-3")
 
         div.innerHTML += ` 
-
         <img class="card-img image" src="${product.image}" onerror="this.src='./assets/images/remodelacion.jpg'" alt="Hubo un error">
         <div class="card-info">
             <p class="text-title">${product.name} </p>
@@ -123,11 +51,8 @@ const loadProducts = (products) => {
     
             `
         container.appendChild(div)
-    } 
+    }
 }
-list()
-loadProducts(products)
-
 
 // PARA ORDENAR LOS PRECIOS (NUEVO)
 function optionPrice() {
@@ -148,6 +73,7 @@ function optionPrice() {
         }
     })
     loadProducts(products)
+    loadCart()
 }
 
 
@@ -163,35 +89,38 @@ function searching() {
                 loadProducts(search)
             })
         } else if (parameter !== "") {
-            result1 = products.filter(product => product.brand.match(parameter))
-            if (result1.length !== 0) {
-                search.push(result1)
+            secondResult = products.filter(product => product.brand.match(parameter))
+            if (secondResult.length !== 0) {
+                search.push(secondResult)
                 search.map(search => {
                     products
                     loadProducts(search)
                 })
-
             } else {
-                alert("No se encontro el producto")
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'No existe ese producto'
+                })
             }
         }
     }
+    loadCart()
 }
 
 
-loadCart()
+
+//BUSQUEDA DE ATAJO ENTER
+const shortcut = (e) => {
+        if (e.key === "Enter") {
+            searching()
+        }
+}
 
 // BOTONES
 
 //OPCION DE PRECIOS
 select.addEventListener("change", () => optionPrice())
-//AGREGADO DE PRODUCTOS
-addingNewProducts.addEventListener("click", () => adminLogin())
 //BUSCADOR
 result.addEventListener("click", searching)
-filter.addEventListener("keypress", (e) => {
-    if (e.key === "Enter") {
-        searching()
-    }
-})
-
+filter.addEventListener("keydown",(e) =>{ e.preventdefault, shortcut(e) })

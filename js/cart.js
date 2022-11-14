@@ -1,10 +1,9 @@
 //CART
-
 const cart = []
 
+
+
 //CARGANDO AL CARRO
-
-
 const updateCart = (cart) => {
     let cartContainer = document.querySelector("#cart")
     let container = document.getElementById("cartContainer")
@@ -12,8 +11,8 @@ const updateCart = (cart) => {
         cartContainer.innerHTML = ""
     }
     for (const product of cart) {
-        let div = document.createElement("div")
-        div.setAttribute("class", "card text-center col-xl-2 col-md-3 col-sm-4 col-8 m-3")
+        const div = document.createElement("div")
+        div.setAttribute("class", "card text-center col-xl-2 col-md-3 col-sm-4 col-8 m-3 ")
         div.setAttribute("id", "cartContainer")
         div.innerHTML +=
             `
@@ -31,18 +30,35 @@ const updateCart = (cart) => {
                         <i class="fa-regular fa-trash-can remove" data-id="${product.name}"></i>
                         </div>
                     </div>
-            `
+                    `
+
         cartContainer.appendChild(div)
     }
+
+    const btnFinish = document.createElement("button")
+    btnFinish.setAttribute("class", "btn-cart btn btn-secondary")
+    btnFinish.setAttribute("id", "finish")
+    btnFinish.innerText = "Finalizar compra"
+    cartContainer.appendChild(btnFinish)
+    btnFinish.addEventListener("click",()=> borrandoCarrito());
 }
 
 const saveInLocalStorage = (key, value) => {
     localStorage.setItem(key, JSON.stringify(value))
-} 
+}
+
+const borrandoCarrito = () => {
+    Swal.fire({
+        icon: 'success',
+        title: 'Compra realizada con éxito'
+    }) 
+    let cartContainer = document.querySelector("#cart")
+    cartContainer.innerHTML = []
+    localStorage.removeItem("cart")
+}
 
 
 //DANDOLE VIDA AL BOTON PARA QUE CARGUE EN EL CARRO
-
 const buttons = document.getElementsByClassName("buttonCart")
 const loadCart = () => {
     for (const button of buttons) {
@@ -65,6 +81,10 @@ const loadCart = () => {
             }
             saveInLocalStorage("cart", cart)
             updateCart(cart)
+            Swal.fire({
+                icon: 'success',
+                title: `Se sumo al carrito ${button.id}`
+            })
         })
 
     }
@@ -72,26 +92,20 @@ const loadCart = () => {
 }
 
 
-let collection = document.querySelector(".cart");
-
-collection.addEventListener("click", remove);
-
 //REMOVIENDO LOS PRODUCTOS DEL CARRO
-
-
 function remove(e) {
-    let idProd;
+    let idProd = "";
     if (e.target.classList.contains("remove")) {
         idProd = e.target.getAttribute("data-id");
         idProd = cart.find((element) => element.name == idProd);
     }
-
+    
     if (idProd.quantity === 1) {
         let product = cart.find((prod) => prod.name == idProd.name);
         let index = cart.indexOf(product);
         cart.splice(index, 1);
-        updateCart(cart);
-
+        updateCart(cart)
+        
     } else if (idProd) {
         idProd.quantity--;
         updateCart(cart)
@@ -100,14 +114,29 @@ function remove(e) {
 }
 
 //GUARDANDO EN EL STORAGE, LLAMANDOLO DEL JSON ASI SE PUEDE TERMINAR VIENDO NUEVAMENTE
-
 function recoveryCart() {
     let cartRecovery = JSON.parse(localStorage.getItem("cart"))
-    cartRecovery.forEach((product) => {
-        cart.push(product)
-    });
-    updateCart(cart)
-    console.log(cart);
-
+    if (cartRecovery) {
+        cartRecovery.forEach((product) => {
+            cart.push(product)
+        });
+        updateCart(cart)
+    }
 }
 recoveryCart()
+
+
+let collection = document.querySelector(".cart");
+
+collection.addEventListener("click", remove);
+
+
+//precio total del carrito
+
+const finalPriceCart = () => {
+    const finalPrice = cart.reduce(
+        (acc, products) => acc + products.price * products.quantity,
+        0
+    );
+    return finalPrice;
+};
